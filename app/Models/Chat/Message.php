@@ -21,5 +21,9 @@ class Message extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function scopeLatestFirst($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
 
 }
