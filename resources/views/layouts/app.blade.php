@@ -18,6 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script>
+        window.AuthUser = {!! json_encode([
+            'user' => [
+                'authenticated' => auth()->check(),
+                'id'    =>  auth()->check() ? auth()->user()->id : null,
+                'name'  =>  auth()->check() ? auth()->user()->name : null
+            ]
+        ]) !!}
+    </script>
 </head>
 <body>
     <div id="app">
