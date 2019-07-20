@@ -10,3 +10,13 @@ export default {
     
 }
 </script>
+
+<style lang="scss">
+    .chat {
+        &__messages {
+            height: 400px;
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+    }
+</style>
