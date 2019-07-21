@@ -34,7 +34,7 @@ class ChatPage extends Page
     }
     public function sendMessage(Browser $browser)
     {
-        $browser->keys('@body', ['{enter']);
+        $browser->keys('@body', ['{enter}']);
     }
     /**
      * Get the element shortcuts for the page.
