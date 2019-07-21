@@ -108,4 +108,27 @@ class UserCanSendAMessageTest extends DuskTestCase
                 }
         });
     }
+
+    /**
+     * @test user's messages are highlighted
+     * 
+     * @return void
+     */
+    public function a_users_message_is_highlighted_as_their_own()
+    {
+        $user = factory(\App\Models\User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->visit(new ChatPage)
+                ->typeMessage('My message')
+                ->sendMessage()
+                ->waitFor('@ownMessage')
+                ->with('@ownMessage', function ($message) use ($user) {
+                    $message->assertSee('My message')
+                        ->assertSee($user->name);
+                })
+                ->logout();
+        });
+    }
 }

@@ -17,6 +17,7 @@ abstract class Page extends BasePage
             '@element' => '#selector',
             '@chatMessages' =>  '.chat__messages',
             '@firstChatMessage' => '.chat__messages .chat__message:first-child',
+            '@ownMessage'   =>  '.chat__message--own',
         ];
     }
 }
