@@ -78690,6 +78690,8 @@ Echo.join('chat').here(function (users) {
   _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('user.joined', user);
 }).leaving(function (user) {
   _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('user.left', user);
+}).listen('Chat.MessageCreated', function (e) {
+  _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('message.added', e.message);
 });
 
 /***/ }),
