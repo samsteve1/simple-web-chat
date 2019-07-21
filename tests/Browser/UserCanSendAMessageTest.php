@@ -58,4 +58,31 @@ class UserCanSendAMessageTest extends DuskTestCase
 
         });
     }
+
+    /**
+     *@test A user can't send an empty message
+     * 
+     * @return void
+     */
+    public function a_user_cant_send_an_empty_message()
+    {
+        $user = factory(\App\Models\User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->visit(new ChatPage);
+
+                foreach(['     '] as $empty) {
+                    $browser->typeMessage($empty)
+                        ->sendMessage()
+                        ->assertDontSeeIn('.chat__messages', $user->name);
+
+                }
+
+                $browser->keys('@body', '{shift}', '{enter}')
+                    ->keys('@body', '{shift}', '{enter}')
+                    ->sendMessage()
+                    ->assertDontSee('.chat__messages', $user->name);
+        });
+    }
 }
