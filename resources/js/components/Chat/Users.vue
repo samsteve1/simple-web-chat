@@ -1,4 +1,5 @@
 <template>
+    
     <div class="users" v-if="users.length">
        <div class="users__header">{{ users.length }} user{{ users.length > 1 ? 's' : '' }} online</div>
 
@@ -6,6 +7,7 @@
            <a href="#"><span class="bull">&bull;</span> {{ user.name }}</a>
        </div>
     </div>
+   
 </template>
 <script>
 import Bus from '../../bus'

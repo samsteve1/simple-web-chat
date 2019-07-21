@@ -22,6 +22,10 @@ class ChatRealTimeTest extends DuskTestCase
 
         $this->browse(function ($browserOne, $browserTwo, $browserThree) use ($users) {
 
+             /**
+             * Better way of doing it
+             */
+
             $browsers = [$browserOne, $browserTwo, $browserThree];
 
             foreach($browsers as $index => $browser) {
@@ -54,9 +58,7 @@ class ChatRealTimeTest extends DuskTestCase
             }
 
         
-        /**
-         * Better way of doing it
-         */
+       
 
 
             /**
