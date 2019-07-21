@@ -17,6 +17,8 @@ trait CreatesApplication
 
         $app->make(Kernel::class)->bootstrap();
 
+        // $app['config']->set('database.default', 'sqlite');
+        // $app['config']->set('database.connections.sqlite.database', database_path('testing_database.sqlite'));
         return $app;
     }
 }
