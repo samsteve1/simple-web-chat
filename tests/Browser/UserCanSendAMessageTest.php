@@ -82,7 +82,30 @@ class UserCanSendAMessageTest extends DuskTestCase
                 $browser->keys('@body', '{shift}', '{enter}')
                     ->keys('@body', '{shift}', '{enter}')
                     ->sendMessage()
-                    ->assertDontSee('.chat__messages', $user->name);
+                    ->assertDontSee('.chat__messages', $user->name)
+                    ->logout();
+        });
+    }
+
+    /**
+     * @test Messages are ordered by latest first
+     * 
+     * @return void
+     */
+    public function messages_are_ordered_by_lastest_first()
+    {
+        $user = factory(\App\Models\User::class)->create();
+
+        $this->browse(function (Browser $browser) use ($user) {
+            $browser->loginAs($user)
+                ->visit(new ChatPage);
+            
+                foreach(['one', 'two', 'three'] as $message) {
+                    $browser->typeMessage($message)
+                        ->sendMessage()
+                        ->waitFor('@firstChatMessage')
+                        ->assertSeeIn('@firstChatMessage', $message);
+                }
         });
     }
 }
